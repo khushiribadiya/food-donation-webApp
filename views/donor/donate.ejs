@@ -1,0 +1,59 @@
+<main>
+	<%- include('../partials/donorSidebar') %>
+	
+	<div id="main-wrapper">
+		<div class="bg-white shadow-sm p-3">
+			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+			<h5 class="m-0 color-theme d-inline-block">Donate</h5>
+		</div>
+		
+		<!-- Added container div to center the form -->
+		<div style="display: flex; justify-content: center; padding-top: 20px;">
+			<form action="/donor/donate" method="POST" class="border p-4 bg-white rounded-2 shadow" style="width: 95%; max-width: 900px;">
+				<div style="margin-bottom: 20px;">
+					<label for="food" class="form-label" style="margin-bottom: 5px;">Food type</label>
+					<input type="text" name="donation[foodType]" class="form-control" id="food" placeholder="Enter food.." required autofocus style="padding: 8px 12px;">
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6" style="margin-bottom: 20px;">
+						<label for="quantity" class="form-label" style="margin-bottom: 5px;">Quantity</label>
+						<input type="text" name="donation[quantity]" class="form-control" id="quantity" placeholder="Enter quantity of food.." required style="padding: 8px 12px;">
+					</div>
+					
+					<div class="col-sm-6" style="margin-bottom: 20px;">
+						<label for="time" class="form-label" style="margin-bottom: 5px;">Time of cooking</label>
+						<input type="datetime-local" name="donation[cookingTime]" class="form-date-input" id="time" required style="padding: 7px 12px; width: 100%; border-radius: 4px; border: 1px solid #ced4da;">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-8" style="margin-bottom: 20px;">
+						<label for="address" class="form-label" style="margin-bottom: 5px;">Address to collect</label>
+						<input type="text" name="donation[address]" class="form-control" id="address" placeholder="Enter address.." value="<%= currentUser.address %>" required style="padding: 8px 12px;">
+					</div>
+					
+					<div class="col-sm-4" style="margin-bottom: 20px;">
+						<label for="phone" class="form-label" style="margin-bottom: 5px;">Phone</label>
+						<input type="number" name="donation[phone]" class="form-control" id="phone" placeholder="Enter phone.." value="<%= currentUser.phone %>" required style="padding: 8px 12px;">
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 20px;">
+					<label for="msg" class="form-label" style="margin-bottom: 5px;">Want to write some message?</label>
+					<textarea type="text" name="donation[donorToAdminMsg]" class="form-control" id="msg" placeholder="You can write here some msg.." style="padding: 8px 12px; min-height: 100px;"></textarea>
+				</div>
+				
+				<!-- Updated button with background color and text color -->
+				<button type="submit" class="btn d-block m-auto" style="margin-top: 25px; padding: 10px 0; width: 75%; background-color: #1e4e8c; color: white; border: none; border-radius: 5px;">Submit</button>
+			</form>
+		</div>
+		
+	</div>
+</main>
+
+<script>
+	const d = new Date();
+	const dateString = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + "T" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+	document.getElementById("time").value = dateString;
+</script>

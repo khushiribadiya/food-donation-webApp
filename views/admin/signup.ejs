@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Us - Signup</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    .form-box {
+      background-color: white;
+      padding: 2rem;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #063c5e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #095780;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Join Us</h2>
+    <form action="/signup" method="POST">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="location" placeholder="Location" />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

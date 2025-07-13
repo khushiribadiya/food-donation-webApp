@@ -1,0 +1,61 @@
+<main>
+	<%- include('../partials/donorSidebar') %>
+	
+	<div id="main-wrapper">
+		
+		<div class="bg-white shadow-sm p-3">
+			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+			<h5 class="m-0 color-theme d-inline-block">Pending Donations</h5>
+		</div>
+		
+		<div class="m-4">
+			<% if(pendingDonations.length > 0) { %>
+				<div class="table-responsive">
+					<table class="table table-hover" style="background-color: #e6f3f7;">
+						<thead class="color-theme-bg text-white">
+							<tr>
+								<th>#</th>
+								<th>Food type</th>
+								<th>Quantity</th>
+								<th>Address given</th>
+								<th>Phone given</th>
+								<th>Time of cooking</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(let i=0; i<pendingDonations.length; i++) { %>
+							<tr>
+								<td><%= i+1 %></td>
+								<td><strong><%= pendingDonations[i].foodType %></strong></td>
+								<td><%= pendingDonations[i].quantity %></td>
+								<td><%= pendingDonations[i].address %></td>
+								<td><%= pendingDonations[i].phone %></td>
+								<td><%= pendingDonations[i].cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></td>
+								<td>
+									<% if(pendingDonations[i].status == "pending") { %>
+										<span class="text-pending">Your donation request hasn't been processed yet.</span>
+									<% } else if(pendingDonations[i].status == "rejected") { %>
+										<span class="text-rejected">Your donation request has been rejected</span>
+										<div class="mt-2">
+											<a class="btn btn-sm color-theme-bg text-white" href="/donor/donation/deleteRejected/<%= pendingDonations[i]._id %>">Okay</a>
+										</div>
+									<% } else if(pendingDonations[i].status == "accepted") { %>
+										<span class="text-accepted">Your donation request has been accepted. Please wait while an agent is being assigned.</span>
+									<% } else if(pendingDonations[i].status == "assigned") { %>
+										<span class="text-assigned">Your donation request has been accepted and the agent: <%= pendingDonations[i].agent.firstName + " " + pendingDonations[i].agent.lastName %> has been assigned for collecting food from your house.</span>
+									<% } %>
+								</td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			<% } else { %>
+				<div class="alert text-center">
+					No pending donations found. <a href="/donor/donate" class="color-theme">Make a donation</a> to help those in need!
+				</div>
+			<% } %>
+		</div>
+	</div>
+</main>

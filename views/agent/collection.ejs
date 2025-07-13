@@ -1,0 +1,92 @@
+<main>
+	<%- include('../partials/agentSidebar') %>
+	
+	<div id="main-wrapper">
+		
+		<div class="bg-white shadow-sm p-3">
+			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+			<h5 class="m-0 color-theme d-inline-block">Collection</h5>
+		</div>
+		
+		<div class="row m-2">
+			<!-- Donor Information Card -->
+			<div class="col-md-4 mb-3">
+				<div class="card h-100">
+					<div class="card-header bg-primary text-white">
+						<h6 class="m-0">Donor Information</h6>
+					</div>
+					<div class="card-body">
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Donor Name:</div>
+							<div class="col-7"><%= collection.donor.firstName + " " + collection.donor.lastName %></div>
+						</div>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Phone:</div>
+							<div class="col-7"><%= collection.phone %></div>
+						</div>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Address:</div>
+							<div class="col-7"><%= collection.address %></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Food Details Card -->
+			<div class="col-md-4 mb-3">
+				<div class="card h-100">
+					<div class="card-header bg-primary text-white">
+						<h6 class="m-0">Food Details</h6>
+					</div>
+					<div class="card-body">
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Food Type:</div>
+							<div class="col-7"><%= collection.foodType %></div>
+						</div>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Quantity:</div>
+							<div class="col-7"><%= collection.quantity %></div>
+						</div>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Cooking Time:</div>
+							<div class="col-7"><%= collection.cookingTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Status Information Card -->
+			<div class="col-md-4 mb-3">
+				<div class="card h-100">
+					<div class="card-header bg-primary text-white">
+						<h6 class="m-0">Status</h6>
+					</div>
+					<div class="card-body">
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Status:</div>
+							<div class="col-7">
+								<span class="badge bg-<%= collection.status === 'collected' ? 'success' : collection.status === 'assigned' ? 'warning' : 'secondary' %>">
+									<%= collection.status %>
+								</span>
+							</div>
+						</div>
+						
+						<% if(collection.status == "collected") { %>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Collection Time:</div>
+							<div class="col-7"><%= collection.collectionTime.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short"}) %></div>
+						</div>
+						<% } %>
+						
+						<% if(collection.status == "assigned" && collection.adminToAgentMsg != "") { %>
+						<div class="row mb-2">
+							<div class="col-5 fw-bold">Admin Message:</div>
+							<div class="col-7"><%= collection.adminToAgentMsg %></div>
+						</div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

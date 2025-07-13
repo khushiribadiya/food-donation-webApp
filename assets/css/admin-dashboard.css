@@ -1,0 +1,452 @@
+/* admin-dashboard.css */
+
+/* Card animations and styling */
+.d-flex.gap-3 > div {
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeInUp 0.6s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    border-radius: 8px !important;
+}
+
+/* Staggered animation delays for cards */
+.d-flex.gap-3 > div:nth-child(1) { animation-delay: 0.1s; }
+.d-flex.gap-3 > div:nth-child(2) { animation-delay: 0.2s; }
+.d-flex.gap-3 > div:nth-child(3) { animation-delay: 0.3s; }
+.d-flex.gap-3 > div:nth-child(4) { animation-delay: 0.4s; }
+.d-flex.gap-3 > div:nth-child(5) { animation-delay: 0.5s; }
+.d-flex.gap-3 > div:nth-child(6) { animation-delay: 0.6s; }
+.d-flex.gap-3 > div:nth-child(7) { animation-delay: 0.7s; }
+
+/* Enhancement for card hover effect */
+.d-flex.gap-3 > div:hover {
+    transform: translateY(-5px) rotateY(5deg) rotateX(5deg);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effect with smooth background transition */
+.d-flex.gap-3 > div:hover .fs-1, .d-flex.gap-3 > div:hover .fs-5 {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Improved card layout */
+.d-flex.gap-3 > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem !important;
+    min-height: 150px;
+    justify-content: space-between;
+}
+
+/* Styling for the number inside cards */
+.d-flex.gap-3 > div .fs-1 {
+    font-size: 2.5rem !important;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Styling for the text label inside cards */
+.d-flex.gap-3 > div .fs-5 {
+    font-size: 1rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* Add icon placeholders to cards */
+.d-flex.gap-3 > div::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+/* Add specific icons to each card (using Font Awesome classes) */
+.d-flex.gap-3 > div:nth-child(1)::before { content: "\f007"; } /* Admin icon */
+.d-flex.gap-3 > div:nth-child(2)::before { content: "\f2b5"; } /* Donor icon */
+.d-flex.gap-3 > div:nth-child(3)::before { content: "\f0e8"; } /* Agent icon */
+.d-flex.gap-3 > div:nth-child(4)::before { content: "\f4be"; } /* New request icon */
+.d-flex.gap-3 > div:nth-child(5)::before { content: "\f4c0"; } /* Assign icon */
+.d-flex.gap-3 > div:nth-child(6)::before { content: "\f0f3"; } /* Not collected icon */
+.d-flex.gap-3 > div:nth-child(7)::before { content: "\f058"; } /* Collected icon */
+
+/* Card layout with subtle wave background effect */
+.d-flex.gap-3 > div::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255, 255, 255, 0.1)' fill-opacity='1' d='M0,192L48,176C96,160,192,128,288,122.7C384,117,480,139,576,165.3C672,192,768,224,864,224C960,224,1056,192,1152,176C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+/* Ensure text is above the wave background */
+.d-flex.gap-3 > div .fs-1,
+.d-flex.gap-3 > div .fs-5 {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhance the main wrapper and header */
+#main-wrapper {
+    background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+    transition: background 0.3s ease;
+}
+
+.bg-white.shadow-sm {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.5s forwards;
+}
+
+/* Style the sidebar toggler button */
+#sidebar-toggler-btn {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#sidebar-toggler-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#sidebar-toggler-btn i {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Optional: Make dashboard responsive */
+@media (max-width: 768px) {
+    .d-flex.gap-3 > div {
+        width: 100% !important;
+    }
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add a pulsing effect to the cards to draw attention */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Apply the pulse animation to cards with non-zero values */
+.d-flex.gap-3 > div:not([class*="fs-1"]:empty) {
+    animation: fadeInUp 0.6s forwards, pulse 2s infinite 1s;
+}
+
+/* Add a subtle gradient overlay to cards for depth */
+.bg-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #198754 0%, #157347 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%) !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+}
+
+/* Ripple effect for cards */
+.d-flex.gap-3 > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.d-flex.gap-3 > div:active::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: ripple 0.6s ease-out;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes ripple {
+    100% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+/* Custom scrollbar style */
+#sidebar {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth page transitions */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Admin Dashboard Background */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    animation: gradientShift 5s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Particle Container */
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Particle Styling */
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleAnimation 4s infinite ease-in-out;
+}
+
+/* Keyframe Animation for Particles */
+@keyframes particleAnimation {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    25% {
+        transform: translate(50px, -100px);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(100px, 50px);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(150px, 100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(200px, 0);
+        opacity: 0;
+    }
+}
+
+/* Gradient Animation for Background */
+@keyframes gradientShift {
+    0% {
+        background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    }
+    50% {
+        background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+    }
+    100% {
+        background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    }
+}
+
+/* Card animations and styling */
+.d-flex.gap-3 > div {
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeInUp 0.6s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    border-radius: 8px !important;
+}
+
+/* Staggered animation delays for cards */
+.d-flex.gap-3 > div:nth-child(1) { animation-delay: 0.1s; }
+.d-flex.gap-3 > div:nth-child(2) { animation-delay: 0.2s; }
+.d-flex.gap-3 > div:nth-child(3) { animation-delay: 0.3s; }
+.d-flex.gap-3 > div:nth-child(4) { animation-delay: 0.4s; }
+.d-flex.gap-3 > div:nth-child(5) { animation-delay: 0.5s; }
+.d-flex.gap-3 > div:nth-child(6) { animation-delay: 0.6s; }
+.d-flex.gap-3 > div:nth-child(7) { animation-delay: 0.7s; }
+
+/* Hover effects for the cards */
+.d-flex.gap-3 > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for the cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhance the main wrapper and header */
+#main-wrapper {
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.bg-white.shadow-sm {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.5s forwards;
+}
+
+/* Style the sidebar toggler button */
+#sidebar-toggler-btn {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#sidebar-toggler-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#sidebar-toggler-btn i {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Optional: Make dashboard responsive */
+@media (max-width: 768px) {
+    .d-flex.gap-3 > div {
+        width: 100% !important;
+    }
+}
+
+/* Animation keyframes */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add a subtle gradient overlay to cards for depth */
+.bg-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #198754 0%, #157347 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%) !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+}

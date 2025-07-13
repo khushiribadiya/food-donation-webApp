@@ -1,0 +1,439 @@
+<!-- Main Content -->
+<main>
+	<%- include('../partials/agentSidebar') %>
+  
+	<div id="main-wrapper">
+	  <!-- Welcome Header (Removed gradient background) -->
+	  <div class="welcome-header">
+		<div class="container-fluid px-4">
+		  <div class="d-flex align-items-center py-3">
+			<div class="d-flex align-items-center">
+			  <button class="sidebar-toggle" id="sidebar-toggler-btn">
+				<i class="fas fa-bars"></i>
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+  
+	  <!-- Centered Welcome Text -->
+	  <div class="text-center mb-4" style="margin-top: -30px;">
+		<h3 class="welcome-title">
+		  Welcome, <%= currentUser.firstName %> <%= currentUser.lastName %>
+		</h3>
+		<p class="text-muted">Manage your personal information below</p>
+	  </div>
+  
+	  <!-- Profile Card Section -->
+	  <section class="profile-section">
+		<div class="container">
+		  <div class="profile-card">
+			<div class="profile-header">
+			  <div class="profile-title">
+				<i class="fas fa-user-circle profile-icon"></i>
+				<h3>Update Your Profile</h3>
+			  </div>
+			</div>
+  
+			<!-- Profile Update Form -->
+			<form action="/agent/profile?_method=PUT" method="POST">
+			  <div class="row g-4">
+				<div class="col-md-6">
+				  <div class="form-group">
+					<label for="first-name">First Name</label>
+					<input
+					  type="text"
+					  name="agent[firstName]"
+					  class="form-control"
+					  id="first-name"
+					  placeholder="Enter first name"
+					  value="<%= currentUser.firstName %>"
+					  required
+					/>
+				  </div>
+				</div>
+  
+				<div class="col-md-6">
+				  <div class="form-group">
+					<label for="last-name">Last Name</label>
+					<input
+					  type="text"
+					  name="agent[lastName]"
+					  class="form-control"
+					  id="last-name"
+					  placeholder="Enter last name"
+					  value="<%= currentUser.lastName %>"
+					  required
+					/>
+				  </div>
+				</div>
+  
+				<div class="col-12">
+				  <div class="form-group">
+					<label for="email">Email</label>
+					<input
+					  type="email"
+					  id="email"
+					  class="form-control disabled-field"
+					  value="<%= currentUser.email %>"
+					  disabled
+					/>
+				  </div>
+				</div>
+  
+				<div class="col-12">
+				  <div class="form-group">
+					<label>Gender</label>
+					<div class="gender-options">
+					  <div class="gender-option">
+						<input class="form-check-input" type="radio"
+						name="agent[gender]" id="male" value="male" <%
+						if(currentUser.gender=='male'){%> checked <%}%>>
+						<label class="form-check-label" for="male">Male</label>
+					  </div>
+					  <div class="gender-option">
+						<input class="form-check-input" type="radio"
+						name="agent[gender]" id="female" value="female" <%
+						if(currentUser.gender=='female'){%> checked <%}%>>
+						<label class="form-check-label" for="female"
+						  >Female</label
+						>
+					  </div>
+					</div>
+				  </div>
+				</div>
+  
+				<div class="col-12">
+				  <div class="form-group">
+					<label for="address">Address</label>
+					<input
+					  type="text"
+					  name="agent[address]"
+					  class="form-control"
+					  id="address"
+					  placeholder="Enter your full address"
+					  value="<%= currentUser.address %>"
+					/>
+				  </div>
+				</div>
+  
+				<div class="col-md-12">
+				  <div class="form-group">
+					<label for="phone">Phone</label>
+					<input
+					  type="number"
+					  name="agent[phone]"
+					  class="form-control"
+					  id="phone"
+					  placeholder="Enter phone number"
+					  value="<%= currentUser.phone %>"
+					/>
+				  </div>
+				</div>
+  
+				<div class="col-12">
+				  <div class="action-buttons">
+					<button type="submit" class="update-btn">
+					  <i class="fas fa-save me-2"></i>Update Profile
+					</button>
+				  </div>
+				</div>
+			  </div>
+			</form>
+		  </div>
+		</div>
+	  </section>
+	</div>
+  </main>
+  
+  <style>
+	/* Core Variables */
+	:root {
+	  --primary-navy: #0b2545;
+	  --secondary-purple: #6247aa;
+	  --accent-blue: #3b7dd8;
+	  --text-color: #333;
+	  --light-text: #6c757d;
+	  --light-bg: #f8f9fd;
+	  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+	  --input-border: #e0e6f2;
+	  --input-bg: #ffffff;
+	  --input-focus: rgba(59, 125, 216, 0.15);
+	  --border-radius: 8px;
+	  --header-gradient: linear-gradient(135deg, #0b2545, #6247aa);
+	}
+  
+	body {
+	  background-color: var(--light-bg);
+	  color: var(--text-color);
+	  font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+	}
+  
+	/* Welcome Header - Removed background, added text gradient */
+	.welcome-header {
+	  background: transparent;
+	  padding: 0.8rem 0;
+	  position: relative;
+	  z-index: 10;
+	}
+  
+	/* Centered welcome title styling */
+	.welcome-title {
+	  margin: 0;
+	  font-size: 1.4rem;
+	  font-weight: 500;
+	  background-image: var(--header-gradient);
+	  -webkit-background-clip: text;
+	  background-clip: text;
+	  color: transparent;
+	}
+  
+	.text-muted {
+	  color: var(--light-text);
+	  font-size: 0.95rem;
+	}
+  
+	.sidebar-toggle {
+	  background: rgba(11, 37, 69, 0.15);
+	  border: none;
+	  color: var(--primary-navy);
+	  width: 38px;
+	  height: 38px;
+	  border-radius: 4px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  cursor: pointer;
+	  transition: all 0.2s ease;
+	}
+  
+	.sidebar-toggle:hover {
+	  background: rgba(11, 37, 69, 0.25);
+	}
+  
+	/* Profile Section with animation */
+	.profile-section {
+	  position: relative;
+	  padding: 1.5rem 1rem;
+	  margin-top: -20; 
+	  animation: fadeIn 0.6s ease-out;
+	}
+  
+	@keyframes fadeIn {
+	  from {
+		opacity: 0;
+		transform: translateY(20px);
+	  }
+	  to {
+		opacity: 1;
+		transform: translateY(0);
+	  }
+	}
+  
+	.profile-card {
+	  background: white;
+	  border-radius: var(--border-radius);
+	  box-shadow: var(--card-shadow);
+	  overflow: hidden;
+	  max-width: 800px;
+	  margin: 0 auto;
+	  transition: all 0.3s ease;
+	}
+  
+	.profile-card:hover {
+	  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.15);
+	  transform: translateY(-3px);
+	}
+  
+	.profile-header {
+	  padding: 1.25rem;
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	  background-color: rgba(11, 37, 69, 0.02);
+	  position: relative;
+	  overflow: hidden;
+	}
+  
+	/* Animated border at top of profile header */
+	.profile-header::before {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  height: 3px;
+	  background: var(--header-gradient);
+	}
+  
+	.profile-title {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 10px;
+	}
+  
+	.profile-icon {
+	  color: var(--accent-blue);
+	  font-size: 1.5rem;
+	  animation: pulse 2s infinite;
+	}
+  
+	@keyframes pulse {
+	  0% {
+		transform: scale(1);
+	  }
+	  50% {
+		transform: scale(1.1);
+	  }
+	  100% {
+		transform: scale(1);
+	  }
+	}
+  
+	.profile-header h3 {
+	  color: var(--primary-navy);
+	  margin: 0;
+	  font-size: 1.4rem;
+	  font-weight: 600;
+	}
+  
+	/* Form Styling */
+	form {
+	  padding: 1.5rem;
+	}
+  
+	.form-group {
+	  margin-bottom: 1.2rem;
+	  position: relative;
+	  transition: all 0.2s ease;
+	}
+  
+	.form-group:focus-within {
+	  transform: translateY(-2px);
+	}
+  
+	label {
+	  display: block;
+	  color: var(--primary-navy);
+	  margin-bottom: 0.4rem;
+	  font-weight: 500;
+	  font-size: 0.9rem;
+	}
+  
+	.form-group:focus-within label {
+	  color: var(--accent-blue);
+	}
+  
+	.form-control {
+	  width: 100%;
+	  padding: 0.7rem 1rem;
+	  font-size: 0.95rem;
+	  border: 1px solid var(--input-border);
+	  border-radius: var(--border-radius);
+	  background-color: var(--input-bg);
+	  transition: all 0.2s ease;
+	}
+  
+	.form-control:focus {
+	  border-color: var(--accent-blue);
+	  box-shadow: 0 0 0 3px var(--input-focus);
+	  outline: none;
+	}
+  
+	.disabled-field {
+	  background-color: #f0f2f8;
+	  cursor: not-allowed;
+	  opacity: 0.75;
+	}
+  
+	/* Gender Options */
+	.gender-options {
+	  display: flex;
+	  gap: 1.5rem;
+	  margin-top: 0.4rem;
+	}
+  
+	.gender-option {
+	  display: flex;
+	  align-items: center;
+	  gap: 0.5rem;
+	}
+  
+	.form-check-input {
+	  width: 18px;
+	  height: 18px;
+	  cursor: pointer;
+	  accent-color: var(--accent-blue);
+	}
+  
+	.form-check-label {
+	  cursor: pointer;
+	  user-select: none;
+	}
+  
+	/* Button Styling with animation */
+	.action-buttons {
+	  display: flex;
+	  justify-content: center;
+	  margin-top: 0.5rem;
+	}
+  
+	.update-btn {
+	  background: var(--header-gradient);
+	  background-size: 200% auto;
+	  color: white;
+	  border: none;
+	  padding: 0.7rem 2rem;
+	  font-size: 0.95rem;
+	  font-weight: 500;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	  box-shadow: 0 2px 6px #2c5c9733;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  position: relative;
+	  overflow: hidden;
+	}
+  
+	.update-btn::before {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  left: -100%;
+	  width: 100%;
+	  height: 100%;
+	  background: rgba(201, 23, 23, 0.2);
+	  transition: all 0.6s ease;
+	}
+  
+	.update-btn:hover {
+	  transform: translateY(-2px);
+	  box-shadow: 0 4px 12px rgba(211, 13, 13, 0.3);
+	  background-position: right center;
+	}
+  
+	.update-btn:hover::before {
+	  left: 100%;
+	}
+  
+	.update-btn:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 1px 4px rgba(21, 68, 124, 0.2);
+	}
+  
+	/* Responsive Adjustments */
+	@media (max-width: 768px) {
+	  .profile-card {
+		margin: 0 0.25rem;
+	  }
+  
+	  form {
+		padding: 1rem;
+	  }
+  
+	  .welcome-title {
+		font-size: 1.2rem;
+	  }
+	}
+  </style>
