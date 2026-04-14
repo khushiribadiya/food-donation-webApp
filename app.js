@@ -7,9 +7,9 @@ const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
 const homeRoutes = require("./routes/home.js");           //These lines import route modules for various parts of your app.
 const authRoutes = require("./routes/auth.js");
-const adminRoutes = require("./routes/admin.js");
-const donorRoutes = require("./routes/donor.js");
-const agentRoutes = require("./routes/agent.js");
+// const adminRoutes = require("./routes/admin.js");
+// const donorRoutes = require("./routes/donor.js");
+// const agentRoutes = require("./routes/agent.js");
 // const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
 require("dotenv").config();
 // require("./config/dbConnection.js")();
