@@ -1,4 +1,4 @@
-const Donation = require('../models/Donation'); // Assuming you have a Donation model
+const Donation = require('../models/donation'); // Assuming you have a Donation model
 
 const createDonation = async (req, res) => {
   try {
