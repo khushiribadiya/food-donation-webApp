@@ -10,7 +10,7 @@ const authRoutes = require("./routes/auth.js");
 const adminRoutes = require("./routes/admin.js");
 const donorRoutes = require("./routes/donor.js");
 const agentRoutes = require("./routes/agent.js");
-const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
+// const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
 require("dotenv").config();
 // require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 // Routes
 app.use(homeRoutes);
 app.use(authRoutes);
-app.use(donorRoutes);
+// app.use(donorRoutes);
 app.use(adminRoutes);
 app.use(agentRoutes);
 app.use(donationRoutes);  // Use the donation routes
