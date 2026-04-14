@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 app.use(homeRoutes);
 app.use(authRoutes);
 // app.use(donorRoutes);
-app.use(adminRoutes);
-app.use(agentRoutes);
-app.use(donationRoutes);  // Use the donation routes
+// app.use(adminRoutes);
+// app.use(agentRoutes);
+// app.use(donationRoutes);  // Use the donation routes
 app.use((req, res) => {
   res.status(404).render("404page", { title: "Page not found" });
 });
