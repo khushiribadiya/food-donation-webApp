@@ -7,12 +7,12 @@ const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
 const homeRoutes = require("./routes/home.js");           //These lines import route modules for various parts of your app.
 const authRoutes = require("./routes/auth.js");
-// const adminRoutes = require("./routes/admin.js");
-// const donorRoutes = require("./routes/donor.js");
-// const agentRoutes = require("./routes/agent.js");
-// const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
+const adminRoutes = require("./routes/admin.js");
+const donorRoutes = require("./routes/donor.js");
+const agentRoutes = require("./routes/agent.js");
+const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
 require("dotenv").config();
-// require("./config/dbConnection.js")();
+require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
 
 app.set("view engine", "ejs");
@@ -40,10 +40,10 @@ app.use((req, res, next) => {
 // Routes
 app.use(homeRoutes);
 app.use(authRoutes);
-// app.use(donorRoutes);
-// app.use(adminRoutes);
-// app.use(agentRoutes);
-// app.use(donationRoutes);  // Use the donation routes
+app.use(donorRoutes);
+app.use(adminRoutes);
+app.use(agentRoutes);
+app.use(donationRoutes);  // Use the donation routes
 app.use((req, res) => {
   res.status(404).render("404page", { title: "Page not found" });
 });
