@@ -12,7 +12,7 @@ const donorRoutes = require("./routes/donor.js");
 const agentRoutes = require("./routes/agent.js");
 const donationRoutes = require("./routes/donationRoutes");  // Import your donation routes
 require("dotenv").config();
-require("./config/dbConnection.js")();
+// require("./config/dbConnection.js")();
 require("./config/passport.js")(passport);
 
 app.set("view engine", "ejs");

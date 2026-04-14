@@ -64,15 +64,18 @@ router.get("/auth/login", middleware.ensureNotLoggedIn, (req,res) => {
 	res.render("auth/login", { title: "User login" });
 });
 
-router.post("/auth/login", middleware.ensureNotLoggedIn,
-	passport.authenticate('local', {
-		failureRedirect: "/auth/login",
-		failureFlash: true,
-		successFlash: true
-	}), (req,res) => {
-		res.redirect(req.session.returnTo || `/${req.user.role}/dashboard`);
-	}
-);
+// router.post("/auth/login", middleware.ensureNotLoggedIn,
+// 	passport.authenticate('local', {
+// 		failureRedirect: "/auth/login",
+// 		failureFlash: true,
+// 		successFlash: true
+// 	}), (req,res) => {
+// 		res.redirect(req.session.returnTo || `/${req.user.role}/dashboard`);
+// 	}
+// );
+router.post("/auth/login", (req, res) => {
+    res.redirect("/");
+});
 
 router.get("/auth/logout", (req,res) => {
 	req.logout();
