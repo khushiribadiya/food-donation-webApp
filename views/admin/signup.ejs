@@ -1,51 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Join Us - Signup</title>
-  <style>
-    body {
-      background-color: #f4f4f4;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
-    }
-    .form-box {
-      background-color: white;
-      padding: 2rem;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      border-radius: 8px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #063c5e;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #095780;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-box">
-    <h2>Join Us</h2>
-    <form action="/signup" method="POST">
-      <input type="text" name="name" placeholder="Full Name" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="location" placeholder="Location" />
-      <button type="submit">Submit</button>
-    </form>
+<div class="form-box" style="background-color:white; padding:2rem; max-width:400px; margin:auto; box-shadow:0 5px 15px rgba(0,0,0,0.2); border-radius:8px;">
+  <h2>Join Us</h2>
+  <form action="/auth/signup" method="POST">
+
+    <label>First Name</label>
+    <input type="text" name="firstName" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #ccc;" required />
+
+    <label>Last Name</label>
+    <input type="text" name="lastName" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #ccc;" required />
+
+    <label>Email</label>
+    <input type="email" name="email" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #ccc;" required />
+
+    <label>Password</label>
+    <input type="password" name="password1" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #ccc;" required />
+
+    <label>Confirm Password</label>
+    <input type="password" name="password2" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #ccc;" required />
+
+    <button type="submit" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; background-color:#063c5e; color:white; border:none; cursor:pointer; font-weight:bold;">Sign Up</button>
+
+  </form>
+</div>
+
+<!-- Admin access popup -->
+<div id="adminPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; justify-content:center; align-items:center;">
+  <div style="background:white; padding:2rem; border-radius:8px; max-width:350px; text-align:center;">
+    <h3 style="color:#c0392b;">Access Denied</h3>
+    <p>You do not have permission to sign up as an admin.</p>
+    <button onclick="document.getElementById('adminPopup').style.display='none'" style="width:auto; padding:8px 20px; background:#063c5e; color:white; border:none; border-radius:5px; cursor:pointer;">OK</button>
   </div>
-</body>
-</html>
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('error') === 'admin_not_allowed') {
+    document.getElementById('adminPopup').style.display = 'flex';
+    history.replaceState(null, '', '/auth/signup');
+  }
+</script>

@@ -24,10 +24,11 @@ router.get("/donor/donate", middleware.ensureDonorLoggedIn, (req,res) => {
 router.post("/donor/donate", middleware.ensureDonorLoggedIn, async (req,res) => {
 	try
 	{
-		const donation = req.body.donation;
-		donation.status = "pending";
-		donation.donor = req.user._id;
-		const newDonation = new Donation(donation);
+		const newDonation = new Donation({
+			...req.body.donation,
+			status: "pending",
+			donor: req.user._id
+		});
 		await newDonation.save();
 		req.flash("success", "Donation request sent successfully");
 		res.redirect("/donor/donations/pending");
@@ -36,21 +37,21 @@ router.post("/donor/donate", middleware.ensureDonorLoggedIn, async (req,res) => 
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/donor/donate");
 	}
 });
 
 router.get("/donor/donations/pending", middleware.ensureDonorLoggedIn, async (req,res) => {
 	try
 	{
-		const pendingDonations = await Donation.find({ donor: req.user._id, status: ["pending", "rejected", "accepted", "assigned"] }).populate("agent");
+		const pendingDonations = await Donation.find({ donor: req.user._id, status:{ $in: ["pending", "rejected", "accepted", "assigned"] } }).populate("agent");
 		res.render("donor/pendingDonations", { title: "Pending Donations", pendingDonations });
 	}
 	catch(err)
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/donor/donations/pending");
 	}
 });
 
@@ -64,22 +65,23 @@ router.get("/donor/donations/previous", middleware.ensureDonorLoggedIn, async (r
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/donor/donations/previous");
 	}
 });
 
-router.get("/donor/donation/deleteRejected/:donationId", async (req,res) => {
+router.get("/donor/donation/deleteRejected/:donationId", middleware.ensureDonorLoggedIn, async (req, res) => {
 	try
 	{
 		const donationId = req.params.donationId;
 		await Donation.findByIdAndDelete(donationId);
+		req.flash("success", "Donation deleted successfully");
 		res.redirect("/donor/donations/pending");
 	}
 	catch(err)
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/donor/donations/pending");
 	}
 });
 
@@ -91,8 +93,11 @@ router.put("/donor/profile", middleware.ensureDonorLoggedIn, async (req,res) => 
 	try
 	{
 		const id = req.user._id;
-		const updateObj = req.body.donor;	// updateObj: {firstName, lastName, gender, address, phone}
-		await User.findByIdAndUpdate(id, updateObj);
+		const updateObj = req.body.donor;	
+		await User.findByIdAndUpdate(id, updateObj, {
+			new: true,
+			runValidators: true
+		});
 		
 		req.flash("success", "Profile updated successfully");
 		res.redirect("/donor/profile");
@@ -101,7 +106,7 @@ router.put("/donor/profile", middleware.ensureDonorLoggedIn, async (req,res) => 
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/donor/profile");
 	}
 	
 });

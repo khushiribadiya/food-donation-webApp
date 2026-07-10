@@ -24,7 +24,7 @@ router.get("/agent/collections/pending", middleware.ensureAgentLoggedIn, async (
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/agent/collections/pending");
 	}
 });
 
@@ -38,7 +38,7 @@ router.get("/agent/collections/previous", middleware.ensureAgentLoggedIn, async 
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/agent/collections/previous");
 	}
 });
 
@@ -53,7 +53,7 @@ router.get("/agent/collection/view/:collectionId", middleware.ensureAgentLoggedI
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/agent/collections/pending");
 	}
 });
 
@@ -69,7 +69,7 @@ router.get("/agent/collection/collect/:collectionId", middleware.ensureAgentLogg
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/agent/collections/pending");
 	}
 });
 
@@ -83,8 +83,11 @@ router.put("/agent/profile", middleware.ensureAgentLoggedIn, async (req,res) => 
 	try
 	{
 		const id = req.user._id;
-		const updateObj = req.body.agent;	// updateObj: {firstName, lastName, gender, address, phone}
-		await User.findByIdAndUpdate(id, updateObj);
+		const updateObj = req.body.agent;	
+		await User.findByIdAndUpdate(id, updateObj, {
+			new: true,
+			runValidators: true
+		});
 		
 		req.flash("success", "Profile updated successfully");
 		res.redirect("/agent/profile");
@@ -93,7 +96,7 @@ router.put("/agent/profile", middleware.ensureAgentLoggedIn, async (req,res) => 
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/agent/profile");
 	}
 	
 });

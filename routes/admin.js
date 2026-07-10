@@ -19,17 +19,21 @@ router.get("/admin/dashboard", middleware.ensureAdminLoggedIn, async (req,res) =
 	});
 });
 
-router.get("/admin/donations/pending", middleware.ensureAdminLoggedIn, async (req,res) => {
-	try
-	{
-		const pendingDonations = await Donation.find({status: ["pending", "accepted", "assigned"]}).populate("donor");
-		res.render("admin/pendingDonations", { title: "Pending Donations", pendingDonations });
+router.get("/admin/donations/pending", middleware.ensureAdminLoggedIn, async (req, res) => {
+	try {
+		const pendingDonations = await Donation.find({
+			status: { $in: ["pending", "accepted", "assigned"] }
+		}).populate("donor");
+
+		res.render("admin/pendingDonations", {
+			title: "Pending Donations",
+			pendingDonations
+		});
 	}
-	catch(err)
-	{
+	catch (err) {
 		console.log(err);
-		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		req.flash("error", "Some error occurred on the server.");
+		res.redirect("/admin/dashboard");
 	}
 });
 
@@ -43,7 +47,7 @@ router.get("/admin/donations/previous", middleware.ensureAdminLoggedIn, async (r
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/donations/previous");
 	}
 });
 
@@ -58,7 +62,7 @@ router.get("/admin/donation/view/:donationId", middleware.ensureAdminLoggedIn, a
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/donations/pending");
 	}
 });
 
@@ -74,7 +78,7 @@ router.get("/admin/donation/accept/:donationId", middleware.ensureAdminLoggedIn,
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/donations/pending");
 	}
 });
 
@@ -90,7 +94,7 @@ router.get("/admin/donation/reject/:donationId", middleware.ensureAdminLoggedIn,
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/donations/pending");
 	}
 });
 
@@ -106,27 +110,38 @@ router.get("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn,
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/donations/pending");
 	}
 });
 
 router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn, async (req,res) => {
-	try
-	{
+	try {
 		const donationId = req.params.donationId;
-		const {agent, adminToAgentMsg} = req.body;
-		await Donation.findByIdAndUpdate(donationId, { status: "assigned", agent, adminToAgentMsg });
-		req.flash("success", "Agent assigned successfully");
+
+		// 1. Get all agents
+		const agents = await User.find({ role: "agent" });
+
+		if (agents.length === 0) {
+			req.flash("error", "No agents available");
+			return res.redirect("/admin/donations/pending");
+		}
+
+		const selectedAgent = agents[Math.floor(Math.random() * agents.length)];
+
+		await Donation.findByIdAndUpdate(donationId, {
+			status: "assigned",
+			agent: selectedAgent._id
+		});
+
+		req.flash("success", "Agent auto-assigned successfully");
 		res.redirect(`/admin/donation/view/${donationId}`);
-	}
-	catch(err)
-	{
+
+	} catch(err) {
 		console.log(err);
-		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		req.flash("error", "Some error occurred on the server.");
+		res.redirect("/admin/donations/pending");
 	}
 });
-
 router.get("/admin/agents", middleware.ensureAdminLoggedIn, async (req,res) => {
 	try
 	{
@@ -137,7 +152,7 @@ router.get("/admin/agents", middleware.ensureAdminLoggedIn, async (req,res) => {
 	{
 		console.log(err);
 		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		res.redirect("/admin/dashboard");
 	}
 });
 
@@ -146,24 +161,24 @@ router.get("/admin/profile", middleware.ensureAdminLoggedIn, (req,res) => {
 	res.render("admin/profile", { title: "My profile" });
 });
 
-router.put("/admin/profile", middleware.ensureAdminLoggedIn, async (req,res) => {
-	try
-	{
+router.put("/admin/profile", middleware.ensureAdminLoggedIn, async (req, res) => {
+	try {
 		const id = req.user._id;
-		const updateObj = req.body.admin;	// updateObj: {firstName, lastName, gender, address, phone}
-		await User.findByIdAndUpdate(id, updateObj);
-		
+		const updateObj = req.body.admin;
+
+		await User.findByIdAndUpdate(id, updateObj, {
+			new: true,
+			runValidators: true
+		});
+
 		req.flash("success", "Profile updated successfully");
 		res.redirect("/admin/profile");
 	}
-	catch(err)
-	{
+	catch (err) {
 		console.log(err);
-		req.flash("error", "Some error occurred on the server.")
-		res.redirect("back");
+		req.flash("error", "Some error occurred on the server.");
+		res.redirect("/admin/profile");
 	}
-	
 });
-
 
 module.exports = router;
