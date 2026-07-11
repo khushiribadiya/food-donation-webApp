@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ===========================
-       HERO SLIDER
-    ============================ */
-
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.querySelector(".slider-arrow-prev");
+    const nextBtn = document.querySelector(".slider-arrow-next");
 
     let currentSlide = 0;
     let sliderInterval;
@@ -36,9 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    function prevSlide() {
+
+        currentSlide--;
+
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+        }
+
+        showSlide(currentSlide);
+
+    }
+
     function startSlider() {
 
-        sliderInterval = setInterval(nextSlide, 3000);
+        sliderInterval = setInterval(nextSlide, 5000);
 
     }
 
@@ -78,14 +88,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+        if (nextBtn) {
+
+            nextBtn.addEventListener("click", () => {
+
+                stopSlider();
+
+                nextSlide();
+
+                startSlider();
+
+            });
+
+        }
+
+        if (prevBtn) {
+
+            prevBtn.addEventListener("click", () => {
+
+                stopSlider();
+
+                prevSlide();
+
+                startSlider();
+
+            });
+
+        }
+
     }
 
-    /* ===========================
-       SCROLL REVEAL
-    ============================ */
-
     const revealItems = document.querySelectorAll(
-        ".how-card, .why-card, .stat-card"
+        ".how-card, .why-card, .stat-card, .contact-preview-card, .feature-card, .process-step, .value-card, .faq-item, .social-card"
     );
 
     function revealOnScroll() {
@@ -107,10 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
     revealOnScroll();
 
     window.addEventListener("scroll", revealOnScroll);
-
-    /* ===========================
-       COUNTER ANIMATION
-    ============================ */
 
     const counters = document.querySelectorAll(".impact-grid h2");
 
@@ -165,5 +195,102 @@ document.addEventListener("DOMContentLoaded", () => {
     animateCounters();
 
     window.addEventListener("scroll", animateCounters);
+
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    if (navLinks.length) {
+
+        const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+        navLinks.forEach(link => {
+
+            let linkPath = "/";
+
+            try {
+                linkPath = new URL(link.href).pathname.replace(/\/+$/, "") || "/";
+            } catch (e) {
+                return;
+            }
+
+            if (linkPath === currentPath) {
+                link.classList.add("active");
+                link.setAttribute("aria-current", "page");
+            }
+
+        });
+
+    }
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+
+        const question = item.querySelector(".faq-question");
+
+        if (!question) return;
+
+        question.addEventListener("click", () => {
+
+            const isOpen = item.classList.contains("open");
+
+            faqItems.forEach(other => other.classList.remove("open"));
+
+            if (!isOpen) {
+                item.classList.add("open");
+            }
+
+        });
+
+    });
+
+    const contactForm = document.getElementById("contactForm");
+
+    if (contactForm) {
+
+        const formSuccess = document.getElementById("formSuccess");
+
+        contactForm.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+
+            if (formSuccess) {
+                formSuccess.classList.add("show");
+            }
+
+            contactForm.reset();
+
+            setTimeout(() => {
+                if (formSuccess) {
+                    formSuccess.classList.remove("show");
+                }
+            }, 4000);
+
+        });
+
+    }
+
+    const footerYear = document.getElementById("footer-year");
+
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
+
+    const heroShapes = document.querySelectorAll(".hero .shape");
+
+    heroShapes.forEach(shape => {
+
+        const randomX = Math.random() * 16 - 8;
+        const randomY = Math.random() * 16 - 8;
+        const randomDelay = Math.random() * 6;
+
+        shape.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        shape.style.animationDelay = `${randomDelay}s`;
+
+    });
 
 });

@@ -1,10 +1,17 @@
 <section class="hero">
+
+    <div class="animated-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
     <div class="hero-content">
 
         <div class="hero-left">
 
             <span class="hero-tag">
-                COMMUNITY FOOD DONATION
+                <i class="fas fa-seedling"></i> COMMUNITY FOOD DONATION
             </span>
 
             <h1>
@@ -17,29 +24,38 @@
 
             <div class="hero-buttons">
                 <a href="/auth/login" class="hero-btn primary-btn">
-                    Donate Food
+                    <i class="fas fa-hand-holding-heart"></i> Donate Food
                 </a>
 
                 <a href="/auth/signup" class="hero-btn secondary-btn">
-                    Join Us
+                    <i class="fas fa-users"></i> Join Us
                 </a>
             </div>
 
             <div class="hero-stats">
 
                 <div class="stat-card">
-                    <h3>24/7</h3>
-                    <p>Support</p>
+                    <span class="stat-icon"><i class="fas fa-headset"></i></span>
+                    <div>
+                        <h3>24/7</h3>
+                        <p>Support</p>
+                    </div>
                 </div>
 
                 <div class="stat-card">
-                    <h3>3</h3>
-                    <p>User Roles</p>
+                    <span class="stat-icon"><i class="fas fa-user-friends"></i></span>
+                    <div>
+                        <h3>3</h3>
+                        <p>User Roles</p>
+                    </div>
                 </div>
 
                 <div class="stat-card">
-                    <h3>Fast</h3>
-                    <p>Food Pickup</p>
+                    <span class="stat-icon"><i class="fas fa-bolt"></i></span>
+                    <div>
+                        <h3>Fast</h3>
+                        <p>Food Pickup</p>
+                    </div>
                 </div>
 
             </div>
@@ -48,38 +64,194 @@
 
         <div class="hero-right">
 
-            <div class="hero-slider">
+            <div class="hero-slider" aria-label="How Meal Share works" aria-roledescription="carousel">
 
-                <div class="slide active">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h2>Donate Food</h2>
-                    <p>
-                        Donors can easily donate surplus food through our platform.
-                    </p>
+                <button type="button" class="slider-arrow slider-arrow-prev" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="slider-track">
+
+                    <div class="slide active">
+                        <div class="slide-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <span class="slide-step">Step 1</span>
+                        <h2>Donate Food</h2>
+                        <p>
+                            Donors can easily upload surplus food through our platform and help reduce food waste.
+                        </p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="slide-step">Step 2</span>
+                        <h2>Admin Verification</h2>
+                        <p>
+                            Every donation request is verified by the admin before being assigned.
+                        </p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon"><i class="fas fa-truck"></i></div>
+                        <span class="slide-step">Step 3</span>
+                        <h2>Agent Collection</h2>
+                        <p>
+                            Assigned agents collect food from donors and ensure safe transportation.
+                        </p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon"><i class="fas fa-hands-helping"></i></div>
+                        <span class="slide-step">Step 4</span>
+                        <h2>Food Distribution</h2>
+                        <p>
+                            Collected food reaches NGOs or people who need it the most.
+                        </p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon"><i class="fas fa-tasks"></i></div>
+                        <span class="slide-step">Step 5</span>
+                        <h2>Track Donations</h2>
+                        <p>
+                            Users can monitor donation status from submission to successful delivery.
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="slide">
-                    <i class="fas fa-user-shield"></i>
-                    <h2>Admin Verification</h2>
-                    <p>
-                        Admin reviews every request and assigns the nearest available agent.
-                    </p>
-                </div>
-
-                <div class="slide">
-                    <i class="fas fa-truck"></i>
-                    <h2>Quick Delivery</h2>
-                    <p>
-                        Agents collect the food and deliver it safely to those in need.
-                    </p>
-                </div>
+                <button type="button" class="slider-arrow slider-arrow-next" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
 
                 <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                    <span class="dot" data-index="4"></span>
                 </div>
 
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="features" class="features-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>PLATFORM FEATURES</span>
+            <h2>Everything Needed to Manage Donations</h2>
+            <p>
+                Meal Share gives donors, agents, and admins the tools they need to move food from
+                surplus to someone's plate, without confusion at any step.
+            </p>
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <i class="fas fa-columns"></i>
+                <h3>Role-Based Dashboards</h3>
+                <p>Separate, purpose-built dashboards for Donors, Agents, and Admins.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-route"></i>
+                <h3>Status Tracking</h3>
+                <p>Follow a donation from submission to pickup to final delivery.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-user-shield"></i>
+                <h3>Admin Verification</h3>
+                <p>Every donation request is reviewed by an admin before an agent is assigned.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-user-check"></i>
+                <h3>Agent Assignment</h3>
+                <p>The nearest available agent is matched to each verified donation.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-history"></i>
+                <h3>Donation History</h3>
+                <p>Donors and agents can review their past donations and pickups anytime.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-lock"></i>
+                <h3>Secure Accounts</h3>
+                <p>Authentication is protected with secure, session-based login for every role.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about-section">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-visual">
+                <div class="about-panel">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="about-badge">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <strong>Trusted Platform</strong>
+                        <span>Verified donors &amp; agents</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <span class="eyebrow">ABOUT MEAL SHARE</span>
+                <h2>A platform built to put surplus food to good use</h2>
+                <p>
+                    Meal Share started as a simple idea: no meal should go to waste while people nearby go hungry.
+                    Today we're a growing network of donors, verified agents, and administrators working together
+                    to turn surplus food into real meals, quickly and safely.
+                </p>
+                <p>
+                    From restaurants and households with extra food to volunteers ready to deliver it, every role
+                    on Meal Share plays a part in getting food where it's needed most — before it's too late to help.
+                </p>
+
+                <div class="about-highlights">
+                    <div class="about-highlight">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Safe &amp; Verified</h4>
+                            <p>Every donation is reviewed before it's picked up.</p>
+                        </div>
+                    </div>
+                    <div class="about-highlight">
+                        <i class="fas fa-route"></i>
+                        <div>
+                            <h4>Local First</h4>
+                            <p>Agents are matched to the nearest available donation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/home/about-us" class="hero-btn secondary-btn">
+                    <i class="fas fa-arrow-right"></i> More about us
+                </a>
             </div>
 
         </div>
@@ -151,7 +323,59 @@
 
         </div>
 
-		
+    </div>
+
+</section>
+
+<!-- FOOD DONATION PROCESS -->
+
+<section id="process" class="process-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>FOOD DONATION PROCESS</span>
+            <h2>From Surplus to a Shared Meal</h2>
+            <p>
+                A closer look at what happens behind the scenes once a donation is submitted.
+            </p>
+        </div>
+
+        <div class="process-timeline">
+
+            <div class="process-step">
+                <div class="process-icon"><i class="fas fa-clipboard-list"></i></div>
+                <div class="process-content">
+                    <h3>Submit a Donation</h3>
+                    <p>The donor enters details of the surplus food — type, quantity, and pickup location.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-icon"><i class="fas fa-search"></i></div>
+                <div class="process-content">
+                    <h3>Admin Reviews the Request</h3>
+                    <p>The admin checks the donation details and looks for an available agent nearby.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-icon"><i class="fas fa-user-check"></i></div>
+                <div class="process-content">
+                    <h3>Agent Assigned &amp; Pickup</h3>
+                    <p>The nearest agent is assigned to the request and collects the food from the donor.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-icon"><i class="fas fa-flag-checkered"></i></div>
+                <div class="process-content">
+                    <h3>Delivered &amp; Confirmed</h3>
+                    <p>The food is delivered to the recipient and the donation is marked complete.</p>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
@@ -203,34 +427,130 @@
 
 </section>
 
-<!-- IMPACT -->
+<!-- OUR MISSION -->
+
+<section class="mission-section">
+
+    <div class="container">
+
+        <div class="mission-card">
+
+            <div class="mission-text">
+                <span class="eyebrow">OUR MISSION</span>
+                <h2>Making sure good food never goes to waste</h2>
+                <p>
+                    Meal Share exists to close the gap between surplus food and the people who need it.
+                    We give donors, volunteers, and administrators one simple platform to move food quickly,
+                    safely, and with full accountability at every step.
+                </p>
+
+                <ul class="mission-list">
+                    <li><i class="fas fa-check-circle"></i> Reduce food waste across every community we serve</li>
+                    <li><i class="fas fa-check-circle"></i> Get surplus food to people while it's still fresh</li>
+                    <li><i class="fas fa-check-circle"></i> Keep every donation transparent and verified</li>
+                </ul>
+
+                <a href="/home/mission" class="hero-btn primary-btn">
+                    <i class="fas fa-arrow-right"></i> Learn more about our mission
+                </a>
+            </div>
+
+            <div class="mission-visual">
+                <div class="mission-panel">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PLATFORM HIGHLIGHTS -->
 
 <section class="impact-section">
 
     <div class="container">
 
+        <div class="section-heading impact-heading">
+            <span>PLATFORM OVERVIEW</span>
+            <h2>Built Around Three Simple Roles</h2>
+        </div>
+
         <div class="impact-grid">
 
-            <div>
-                <h2>10,000+</h2>
-                <p>Meals Donated</p>
+            <div class="impact-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h2>Donor</h2>
+                <p>Submits surplus food for donation</p>
             </div>
 
-            <div>
-                <h2>5,000+</h2>
-                <p>People Helped</p>
+            <div class="impact-card">
+                <i class="fas fa-user-shield"></i>
+                <h2>Admin</h2>
+                <p>Verifies requests &amp; assigns agents</p>
             </div>
 
-            <div>
-                <h2>500+</h2>
-                <p>Volunteers</p>
+            <div class="impact-card">
+                <i class="fas fa-truck"></i>
+                <h2>Agent</h2>
+                <p>Collects &amp; delivers the donation</p>
             </div>
 
-            <div>
-                <h2>50+</h2>
-                <p>Cities</p>
+            <div class="impact-card">
+                <i class="fas fa-shield-alt"></i>
+                <h2>Secure</h2>
+                <p>Every account is protected &amp; verified</p>
             </div>
 
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT PREVIEW -->
+
+<section class="contact-preview-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>GET IN TOUCH</span>
+            <h2>We'd Love to Hear From You</h2>
+            <p>
+                Have a question about donating, volunteering, or partnering with us? Reach out and our team
+                will get back to you.
+            </p>
+        </div>
+
+        <div class="contact-preview-grid">
+
+            <div class="contact-preview-card">
+                <div class="contact-preview-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Visit Us</h3>
+                <p>123 Community Street,<br>Your City</p>
+            </div>
+
+            <div class="contact-preview-card">
+                <div class="contact-preview-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email Us</h3>
+                <p>support@mealshare.org</p>
+            </div>
+
+            <div class="contact-preview-card">
+                <div class="contact-preview-icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Call Us</h3>
+                <p>+1 (555) 123-4567</p>
+            </div>
+
+        </div>
+
+        <div class="contact-preview-cta">
+            <a href="/home/contact-us" class="hero-btn primary-btn">
+                <i class="fas fa-paper-plane"></i> Contact Our Team
+            </a>
         </div>
 
     </div>
@@ -252,11 +572,11 @@
         <div class="hero-buttons">
 
             <a href="/auth/login" class="hero-btn primary-btn">
-                Donate Food
+                <i class="fas fa-hand-holding-heart"></i> Donate Food
             </a>
 
             <a href="/auth/signup" class="hero-btn secondary-btn">
-                Join Us
+                <i class="fas fa-users"></i> Join Us
             </a>
 
         </div>
@@ -264,3 +584,72 @@
     </div>
 
 </section>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h3>Meal Share</h3>
+                <p>
+                    Connecting donors, volunteers, and communities to reduce food waste
+                    and make sure fresh food reaches the people who need it most.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/home/about-us">About Us</a></li>
+                    <li><a href="/home/mission">Our Mission</a></li>
+                    <li><a href="/home/contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get Started</h4>
+                <ul>
+                    <li><a href="/auth/login">Donate Food</a></li>
+                    <li><a href="/auth/signup">Join as Volunteer</a></li>
+                    <li><a href="/auth/signup">Create an Account</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Community Street, Your City</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@mealshare.org</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; <span id="footer-year">2026</span> Meal Share. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>

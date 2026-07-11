@@ -1,0 +1,521 @@
+:root {
+  --primary: #144272;
+  --primary-dark: #0d2c4d;
+  --secondary: #3a7bd5;
+  --accent: #5ea9ff;
+  --surface: #ffffff;
+  --surface-muted: #eef4ff;
+  --ink: #16324f;
+  --ink-muted: #64748b;
+  --border: #dde7f5;
+  --danger: #e5484d;
+  --warning: #f5a623;
+  --success: #2fbf71;
+
+  --shadow-card: 0 25px 60px -15px rgba(20, 66, 114, 0.25);
+  --shadow-btn: 0 12px 25px rgba(20, 66, 114, 0.25);
+  --shadow-btn-hover: 0 18px 32px rgba(20, 66, 114, 0.35);
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-full: 999px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Page shell
+   -------------------------------------------------------------------------- */
+
+.bg-img-2 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 32px 20px 50px;
+  background: linear-gradient(160deg, #eaf2ff 0%, #f7fafd 55%, #eef5fb 100%);
+}
+
+/* --------------------------------------------------------------------------
+   Ambient floating background — matches Login, kept subtle
+   -------------------------------------------------------------------------- */
+
+.animated-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 30%;
+  filter: blur(2px);
+  opacity: 0.35;
+  background: linear-gradient(135deg, rgba(20, 66, 114, 0.18), rgba(94, 169, 255, 0.12));
+  animation: float 22s ease-in-out infinite alternate;
+}
+
+.shape-1 { width: 260px; height: 260px; top: -60px; left: 8%; animation-duration: 24s; }
+.shape-2 {
+  width: 190px; height: 190px; top: 42%; right: 6%;
+  animation-duration: 28s; animation-direction: alternate-reverse;
+  background: linear-gradient(135deg, rgba(58, 123, 213, 0.16), rgba(94, 169, 255, 0.1));
+}
+.shape-3 { width: 150px; height: 150px; bottom: 6%; left: 16%; animation-duration: 26s; }
+.shape-4 {
+  width: 110px; height: 110px; top: 10%; right: 22%;
+  animation-duration: 30s;
+  background: linear-gradient(135deg, rgba(20, 66, 114, 0.14), rgba(94, 169, 255, 0.08));
+}
+.shape-5 {
+  width: 90px; height: 90px; bottom: 12%; right: 10%;
+  animation-duration: 20s; animation-direction: alternate-reverse;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(12px, 14px) rotate(6deg) scale(1.04); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shape { animation: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Card — wider than Login to comfortably hold more fields
+   -------------------------------------------------------------------------- */
+
+.login-form {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 42px 36px;
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+
+  animation: formAppear 0.6s ease;
+}
+
+.login-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}
+
+@keyframes formAppear {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.brand-badge {
+  width: 64px;
+  height:64px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 10px 20px rgba(20, 66, 114, 0.3);
+}
+
+.login-form h3 {
+  color: var(--primary-dark);
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  font-size: 2.15rem;
+}
+
+.title-animated {
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.title-animated::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.form-subtitle {
+  color: var(--ink-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Layout — two columns for name fields on wider screens
+   -------------------------------------------------------------------------- */
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field-group {
+  position: relative;
+  margin-bottom: 26px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.field-group:nth-of-type(1) { animation-delay: 0.02s; }
+.field-group:nth-of-type(2) { animation-delay: 0.04s; }
+.field-group:nth-of-type(3) { animation-delay: 0.06s; }
+.field-group:nth-of-type(4) { animation-delay: 0.08s; }
+.field-group:nth-of-type(5) { animation-delay: 0.1s; }
+.field-group:nth-of-type(6) { animation-delay: 0.12s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 7px;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   Inputs — same icon + underline treatment as Login
+   -------------------------------------------------------------------------- */
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-group.input-animated {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-group.input-animated:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(20, 66, 114, 0.14);
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+  height: 55px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.input-group-text {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.form-control::placeholder {
+  color: #8298b3;
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23144272' d='M1 1l5 5 5-5' stroke='%23144272' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--secondary);
+  background-color: #fff;
+  box-shadow: none;
+}
+
+.input-group.input-animated:focus-within .input-group-text {
+  background: #fff;
+  border-color: var(--secondary);
+}
+
+.password-toggle {
+  cursor: pointer;
+  color: var(--ink-muted);
+  border-radius: 4px;
+}
+
+.password-toggle:hover {
+  color: var(--primary);
+}
+
+/* Visible keyboard focus, in addition to the mouse-driven :focus-within lift above */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.password-toggle:focus-visible,
+.submit-btn:focus-visible,
+.login-link a:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+.input-focus-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.input-group.input-animated:focus-within ~ .input-focus-effect {
+  width: 100%;
+}
+
+.secure-text {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   Password strength + match indicators (UI only)
+   -------------------------------------------------------------------------- */
+
+.password-strength-meter {
+  height: 5px;
+  width: 100%;
+  border-radius: var(--radius-full);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.strength-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+  background: var(--danger);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 6px;
+  display: block;
+}
+
+.match-indicator {
+  font-size: 12.5px;
+  margin-top: 6px;
+  display: none;
+  align-items: center;
+  gap: 5px;
+}
+
+.match-indicator.is-match {
+  display: flex;
+  color: var(--success);
+}
+
+.match-indicator.is-mismatch {
+  display: flex;
+  color: var(--danger);
+}
+
+/* --------------------------------------------------------------------------
+   Alerts
+   -------------------------------------------------------------------------- */
+
+.alert-danger {
+  border: 1px solid rgba(229, 72, 77, 0.25);
+  background: rgba(229, 72, 77, 0.08);
+  color: #b3262b;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  padding: 12px 16px;
+}
+
+.alert-danger .btn-close {
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   Submit button — identical treatment to Login
+   -------------------------------------------------------------------------- */
+
+.submit-btn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 56px;
+  margin-top: 10px;
+  border: none;
+  border-radius: var(--radius-full);
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 0.4s ease;
+  background-size: 160% 160%;
+  background-position: 0% 0%;
+}
+
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: left 0.6s ease;
+}
+
+.submit-btn:hover::before { left: 100%; }
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-btn-hover);
+  background-position: 100% 100%;
+}
+
+.submit-btn:active { transform: translateY(0); }
+
+.submit-btn:disabled {
+  cursor: progress;
+  opacity: 0.85;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Footer link
+   -------------------------------------------------------------------------- */
+
+.login-link {
+  opacity: 0;
+  animation: fadeInUp 0.45s ease 0.35s forwards;
+  font-size: 14.5px;
+  color: var(--ink-muted);
+}
+
+.login-link a {
+  position: relative;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: color 0.25s ease;
+}
+
+.login-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.25s ease;
+}
+
+.login-link a:hover { color: var(--secondary); }
+.login-link a:hover::after { width: 100%; }
+
+/* --------------------------------------------------------------------------
+   Scrollbar — matches Login
+   -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track {
+  background: rgba(240, 240, 240, 0.8);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--primary), var(--secondary));
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--secondary), var(--accent));
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .login-form {
+    max-width: 92%;
+    padding: 36px 26px;
+  }
+
+  .form-row-split {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .bg-img-2 { padding: 40px 14px; }
+
+  .login-form {
+    padding: 32px 20px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-height: 800px) {
+  .bg-img-2 { padding: 44px 20px; }
+}

@@ -1,255 +1,296 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<section class="page-hero">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      height: auto;
-      min-height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      position: relative;
-    }
-
-    .wave-background {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      width: 100%;
-      height: 200px;
-      pointer-events: none;
-    }
-
-    .wave-background svg {
-      width: 200%;
-      height: auto;
-      animation: waveSlide 20s linear infinite;
-    }
-
-    @keyframes waveSlide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .crazy-heading {
-  font-size: 3.5rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #004466, #0077aa, #009ec3);
-  background-size: 300% 300%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: hueRotate 4s ease infinite, bounceIn 1s ease;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-
-    @keyframes hueRotate {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes bounceIn {
-      0% { opacity: 0; transform: scale(0.3); }
-      50% { opacity: 1; transform: scale(1.05); }
-      70% { transform: scale(0.9); }
-      100% { transform: scale(1); }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-    }
-    .fade-in:nth-child(1) { animation-delay: 0.3s; }
-    .fade-in:nth-child(2) { animation-delay: 0.6s; }
-    .fade-in:nth-child(3) { animation-delay: 0.9s; }
-    .fade-in:nth-child(4) { animation-delay: 1.2s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .color-theme {
-      color: #004466;
-      font-weight: 700;
-    }
-
-    .btn-learn {
-      margin-top: 20px;
-      background: linear-gradient(135deg, #004466, #0077aa);
-      color: white;
-      transition: all 0.4s ease;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-learn .arrow {
-      display: inline-block;
-      transition: transform 0.4s ease;
-      margin-left: 8px;
-    }
-
-    .btn-learn.less .arrow {
-      transform: rotate(180deg);
-    }
-
-    .btn-learn::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background: rgba(255, 255, 255, 0.1);
-      transition: opacity 0.6s, transform 0.6s;
-      transform: translate(-50%, -50%) scale(0);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .btn-learn:active::before {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0;
-    }
-
-    .btn-learn span {
-      position: relative;
-      z-index: 1;
-    }
-
-    #extraInfo {
-      display: none;
-    }
-
-    .info-card {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      background-color: #f7f9fa;
-      border-left: 4px solid #0077aa;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-top: 1.5rem;
-      animation: slideIn 0.6s ease forwards;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .info-card img {
-      width: 60px;
-      height: 60px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .crazy-heading {
-        font-size: 2.2rem;
-      }
-
-      .info-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .info-card img {
-        margin-bottom: 10px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- 🌊 Animated Background -->
-  <div class="wave-background">
-    <svg viewBox="0 0 1440 320">
-      <path fill="#b3dbf5" fill-opacity="1" d="M0,64L48,85.3C96,107,192,149,288,160C384,171,480,149,576,144C672,139,768,149,864,154.7C960,160,1056,160,1152,144C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-  </div>
-
-  <!-- 🧠 Heading -->
-  <h1 class="crazy-heading">About Us</h1>
-
-  <!-- 💬 Info Section -->
-  <div class="bg-white m-4 p-4 shadow rounded">
-    <ul class="fs-5">
-      <li class="fade-in">We are an online platform dedicated to reducing food waste and helping the needy.</li>
-      <li class="fade-in">Our mission is to connect food donors with underprivileged individuals and communities.</li>
-      <li class="fade-in">We aim to make the process of donating food simple, secure, and efficient.</li>
-      <li class="fade-in">Through collective efforts, we strive to create a hunger-free and compassionate society.</li>
-    </ul>
-
-    <!-- 🔁 Learn More Button -->
-    <button class="btn btn-learn" onclick="toggleLearnMore(this)">
-      <span>Learn More</span>
-      <span class="arrow">▼</span>
-    </button>
-
-    <!-- 📦 Extra Info -->
-    <div id="extraInfo">
-      <div class="info-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Hands Icon">
-        <div>
-          <h5 class="color-theme">Our Network</h5>
-          <p>We collaborate with NGOs, food banks, and volunteers to ensure that surplus food is distributed efficiently and responsibly.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="https://cdn-icons-png.flaticon.com/512/2917/2917242.png" alt="Heart Icon">
-        <div>
-          <h5 class="color-theme">Your Impact</h5>
-          <p>By being a part of our initiative, you're contributing to a sustainable and hunger-free future.</p>
-        </div>
-      </div>
+    <div class="animated-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-  </div>
 
-  <!-- 🔧 JS Toggle Script -->
-  <script>
-    function toggleLearnMore(button) {
-      const info = document.getElementById('extraInfo');
-      const arrow = button.querySelector('.arrow');
-      const span = button.querySelector('span');
+    <div class="page-hero-inner">
 
-      if (info.style.display === 'block') {
-        info.style.display = 'none';
-        button.classList.remove('less');
-        span.textContent = 'Learn More';
-        arrow.textContent = '▼';
-      } else {
-        info.style.display = 'block';
-        button.classList.add('less');
-        span.textContent = 'Less';
-        arrow.textContent = '▲';
-      }
-    }
-  </script>
+        <span class="hero-tag">
+            <i class="fas fa-seedling"></i> ABOUT MEAL SHARE
+        </span>
 
-</body>
-</html>
+        <h1>Turning Surplus Food Into <span>Shared Meals</span></h1>
+
+        <p>
+            Meal Share is a platform created to connect people with surplus food to individuals and communities in need. By making food donation simple and organized, we aim to reduce food waste while helping those who need a meal.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="about-section">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-visual">
+                <div class="about-panel">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="about-badge">
+                    <i class="fas fa-people-group"></i>
+                    <div>
+                        <strong>Community Powered</strong>
+                        <span>Donors, agents &amp; admins working together</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <span class="eyebrow">OUR STORY</span>
+                <h2>Why Meal Share was built</h2>
+                <p>
+                    Every day we see large amounts of perfectly edible food being thrown away,
+                    while many people nearby still struggle to get a proper meal. That gap is
+                    rarely about a lack of food — it's about coordination.
+                </p>
+                <p>
+                    Meal Share was built to close that gap. It gives donors, delivery agents,
+                    and administrators one shared platform to work from — with clear roles, a
+                    verification step, and visibility into where every donation stands, from the
+                    moment it's offered to the moment it reaches someone in need.
+                </p>
+
+                <div class="about-highlights">
+                    <div class="about-highlight">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h4>Community Support</h4>
+                            <p>Every feature is designed around getting food to people quickly and reliably.</p>
+                        </div>
+                    </div>
+                    <div class="about-highlight">
+                        <i class="fas fa-diagram-project"></i>
+                        <div>
+                            <h4>Food Waste Reduction</h4>
+                            <p>Structured around three clear roles: Donor, Agent, and Admin.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="why-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>WHY MEAL SHARE</span>
+            <h2>What This Platform Is Built Around</h2>
+            <p>
+                A few principles guided every design and development decision on this project.
+            </p>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Purpose-Built</h3>
+                <p>Designed specifically to solve one problem: connecting surplus food with people who need it.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-users-cog"></i>
+                <h3>Simple for Everyone</h3>
+                <p>Clear, role-based flows for Donors, Agents and Admins, without unnecessary complexity.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-route"></i>
+                <h3>Transparent Process</h3>
+                <p>Every donation can be followed from submission, through verification, to delivery.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-hands-holding-child"></i>
+                <h3>Built With Care</h3>
+                <p>Every decision was made by putting the people on both ends of a donation first.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="features-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>PROJECT OBJECTIVES</span>
+            <h2>What Meal Share Sets Out To Do</h2>
+            <p>
+                The core goals this system was designed around, from a donor's first submission
+                to a completed delivery.
+            </p>
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Reduce Food Waste</h3>
+                <p>Give surplus food a clear, simple path to people who need it instead of the bin.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-user-shield"></i>
+                <h3>Verify Every Request</h3>
+                <p>Make sure an admin reviews each donation before an agent is assigned.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-route"></i>
+                <h3>Track From End to End</h3>
+                <p>Let donors and agents see a donation's status at every stage of the process.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-lock"></i>
+                <h3>Keep Accounts Secure</h3>
+                <p>Protect every Donor, Agent and Admin account with secure, session-based authentication.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-sitemap"></i>
+                <h3>Structured Roles</h3>
+                <p>Give each role — Donor, Agent, Admin — a dashboard built around what they actually need to do.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Support Real Communities</h3>
+                <p>Keep the platform focused on real donors, real agents, and real people who need help.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="values-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>OUR VALUES</span>
+            <h2>What Guides Everything We Do</h2>
+            <p>
+                These are the principles that shape how Meal Share is designed and how every
+                donation is handled.
+            </p>
+        </div>
+
+        <div class="values-grid">
+
+            <div class="value-card compassion">
+                <i class="fas fa-leaf"></i>
+                <h3>Reduce Food Waste</h3>
+                <p>Give surplus food a second chance instead of letting it go to waste.</p>
+            </div>
+
+            <div class="value-card community">
+                <i class="fas fa-people-group"></i>
+                <h3>Community Support</h3>
+                <p>Donors, agents, and admins work together toward the same goal.</p>
+            </div>
+
+            <div class="value-card transparency">
+                <i class="fas fa-eye"></i>
+                <h3>Transparency</h3>
+                <p>Every donation is verified and trackable from submission to delivery.</p>
+            </div>
+
+            <div class="value-card sustainability">
+                <i class="fas fa-recycle"></i>
+                <h3>Sustainability</h3>
+                <p>Treating food waste reduction as an ongoing responsibility, not a one-time effort.</p>
+            </div>
+
+            <div class="value-card responsibility">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Responsibility</h3>
+                <p>Every role, from donor to agent to admin, is accountable for doing its part well.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="mission-section">
+
+    <div class="container">
+
+        <div class="mission-card">
+
+            <div class="mission-text">
+                <span class="eyebrow">WHY IT MATTERS</span>
+                <h2>Why food donation matters</h2>
+                <p>
+                    A meaningful amount of edible food is thrown away every day — from kitchens,
+                    events, and households — while many people nearby are still short of a proper
+                    meal. Closing that gap doesn't always need a large operation; it often just
+                    needs a simple, reliable way to connect the two sides.
+                </p>
+
+                <ul class="mission-list">
+                    <li><i class="fas fa-check-circle"></i> Good food is wasted daily while people nearby go hungry</li>
+                    <li><i class="fas fa-check-circle"></i> Even small, consistent donations can make a real difference</li>
+                    <li><i class="fas fa-check-circle"></i> Technology can make donating and distributing food simpler and more transparent</li>
+                </ul>
+
+            </div>
+
+            <div class="mission-visual">
+                <div class="mission-panel">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <h2>Be Part of Meal Share</h2>
+
+        <p>
+            Whether you have surplus food to donate or time to help deliver it, there's a role for you here.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/auth/login" class="hero-btn primary-btn">
+                <i class="fas fa-hand-holding-heart"></i> Donate Food
+            </a>
+
+            <a href="/auth/signup" class="hero-btn secondary-btn">
+                <i class="fas fa-users"></i> Join Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
